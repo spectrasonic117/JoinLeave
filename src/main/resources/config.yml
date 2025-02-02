@@ -1,0 +1,4 @@
+messages:
+    join: <dark_gray>[<green>+]<dark_gray> {player}
+    leave: <dark_gray>[<red>-]<dark_gray> {player}
+    reload: <green>¡Configuración recargada correctamente!

@@ -1,0 +1,5 @@
+name: JoinLeave
+version: '${version}'
+main: com.spectrasonic.JoinLeave.Main
+api-version: '1.21'
+authors: [Spectrasonic]

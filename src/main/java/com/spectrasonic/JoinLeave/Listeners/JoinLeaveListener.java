@@ -19,16 +19,21 @@ public class JoinLeaveListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         event.joinMessage(null);
-        String raw = configManager.getJoinMessage().replace("{player}", event.getPlayer().getName());
-        Component message = miniMessage.deserialize(raw);
-        event.getPlayer().getServer().sendMessage(message);
+        if (configManager.isMessagesEnabled()) {
+            String raw = configManager.getJoinMessage().replace("{player}", event.getPlayer().getName());
+            Component message = miniMessage.deserialize(raw);
+            event.getPlayer().getServer().sendMessage(message);
+        }
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         event.quitMessage(null);
-        String raw = configManager.getLeaveMessage().replace("{player}", event.getPlayer().getName());
-        Component message = miniMessage.deserialize(raw);
-        event.getPlayer().getServer().sendMessage(message);
+        if (configManager.isMessagesEnabled()) {
+            String raw = configManager.getLeaveMessage().replace("{player}", event.getPlayer().getName());
+            Component message = miniMessage.deserialize(raw);
+            event.getPlayer().getServer().sendMessage(message);
+        }
+
     }
 }

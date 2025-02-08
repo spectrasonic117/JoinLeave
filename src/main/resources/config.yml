@@ -8,3 +8,8 @@ messages:
     join: <dark_gray>[<green>+<dark_gray>] <gold>{player}
     leave: <dark_gray>[<red>-<dark_gray>] <gold>{player}
     reload: <gray>[<white>JoinLeave<gray>] <green>¡Configuración recargada correctamente!
+    toggle_on: <gray>[<white>JoinLeave<gray>] <green>Mensajes de entrada/salida activados
+    toggle_off: <gray>[<white>JoinLeave<gray>] <red>Mensajes de entrada/salida desactivados
+
+settings:
+    messages_enabled: true

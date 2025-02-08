@@ -1,4 +1,10 @@
+# Config JoinLeave Plugin
+
+# Using Minimessage to format messages
+# Minimessage Playground: https://webui.advntr.dev/
+# Minimessage Format: https://docs.advntr.dev/minimessage/format.html
+
 messages:
-    join: <dark_gray>[<green>+]<dark_gray> {player}
-    leave: <dark_gray>[<red>-]<dark_gray> {player}
-    reload: <green>¡Configuración recargada correctamente!
+    join: <dark_gray>[<green>+<dark_gray>] <gold>{player}
+    leave: <dark_gray>[<red>-<dark_gray>] <gold>{player}
+    reload: <gray>[<white>JoinLeave<gray>] <green>¡Configuración recargada correctamente!

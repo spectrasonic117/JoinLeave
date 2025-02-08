@@ -1,5 +1,20 @@
 name: JoinLeave
-version: '${version}'
+version: "${version}"
 main: com.spectrasonic.JoinLeave.Main
-api-version: '1.21'
+api-version: "1.21"
 authors: [Spectrasonic]
+commands:
+    joinleave:
+        description: Join/Leave messages
+        aliases: [jl]
+        usage: /<command>
+        permission: joinleave.reload
+permissions:
+    joinleave.use:
+        description: Use Join/Leave messages
+        default: op
+        children:
+            joinleave.toggle:
+                default: op
+            joinleave.reload:
+                default: op

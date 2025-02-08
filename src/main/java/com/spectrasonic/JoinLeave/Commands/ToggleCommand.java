@@ -1,30 +1,33 @@
 package com.spectrasonic.JoinLeave.Commands;
 
-import co.aikar.commands.BaseCommand;
-import co.aikar.commands.annotation.*;
 import com.spectrasonic.JoinLeave.Config.ConfigManager;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
+import com.spectrasonic.JoinLeave.Utils.MessageUtils;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-@CommandAlias("joinleave")
-public class ToggleCommand extends BaseCommand {
+public class ToggleCommand implements CommandExecutor {
     private final ConfigManager configManager;
-    private final MiniMessage miniMessage = MiniMessage.miniMessage();
 
     public ToggleCommand(ConfigManager configManager) {
         this.configManager = configManager;
     }
 
-    @Subcommand("toggle")
-    @CommandCompletion("@toggle")
-    @CommandPermission("joinleave.toggle")
-    public void onToggle(CommandSender sender, @Values("on|off") String state) {
-        boolean enable = state.equalsIgnoreCase("on");
-        configManager.setMessagesEnabled(enable);
-        
-        String message = enable ? configManager.getToggleOnMessage() : configManager.getToggleOffMessage();
-        Component component = miniMessage.deserialize(message);
-        sender.sendMessage(component);
+    @Override
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (args.length == 2 && args[0].equalsIgnoreCase("toggle")) {
+            if (!sender.hasPermission("joinleave.toggle")) {
+                MessageUtils.sendPermissionMessage(sender);
+                return true;
+            }
+
+            boolean enable = args[1].equalsIgnoreCase("on");
+            configManager.setMessagesEnabled(enable);
+
+            String message = enable ? configManager.getToggleOnMessage() : configManager.getToggleOffMessage();
+            MessageUtils.sendMessage(sender, message);
+            return true;
+        }
+        return false;
     }
 }

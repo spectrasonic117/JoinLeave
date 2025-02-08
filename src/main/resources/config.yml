@@ -1,15 +1,11 @@
 # Config JoinLeave Plugin
 
-# Using Minimessage to format messages
-# Minimessage Playground: https://webui.advntr.dev/
-# Minimessage Format: https://docs.advntr.dev/minimessage/format.html
-
 messages:
-    join: <dark_gray>[<green>+<dark_gray>] <gold>{player}
-    leave: <dark_gray>[<red>-<dark_gray>] <gold>{player}
-    reload: <gray>[<white>JoinLeave<gray>] <green>¡Configuración recargada correctamente!
-    toggle_on: <gray>[<white>JoinLeave<gray>] <green>Mensajes de entrada/salida activados
-    toggle_off: <gray>[<white>JoinLeave<gray>] <red>Mensajes de entrada/salida desactivados
+    join: "&8[&a+&8] &6{player}"
+    leave: "&8[&c-&8] &6{player}"
+    reload: "&7[&fJoinLeave&7] &aConfiguration reloaded successfully!"
+    toggle_on: "&7[&fJoinLeave&7] &aJoin/Leave messages enabled"
+    toggle_off: "&7[&fJoinLeave&7] &cJoin/Leave messages disabled"
 
 settings:
     messages_enabled: true

@@ -1,18 +1,17 @@
 package com.spectrasonic.JoinLeave;
 
-import co.aikar.commands.PaperCommandManager;
-import com.spectrasonic.JoinLeave.Utils.MessageUtils;
 import com.spectrasonic.JoinLeave.Commands.ReloadCommand;
 import com.spectrasonic.JoinLeave.Commands.ToggleCommand;
+import com.spectrasonic.JoinLeave.Commands.JoinLeaveTabCompleter;
 import com.spectrasonic.JoinLeave.Config.ConfigManager;
 import com.spectrasonic.JoinLeave.Listeners.JoinLeaveListener;
+import com.spectrasonic.JoinLeave.Utils.MessageUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 
     private static Main instance;
     private ConfigManager configManager;
-    private PaperCommandManager commandManager;
 
     public static Main getInstance() {
         return instance;
@@ -20,18 +19,14 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
         instance = this;
         saveDefaultConfig();
         configManager = new ConfigManager(this);
         configManager.load();
 
-        saveDefaultConfig();
-
         registerCommands();
         registerEvents();
         MessageUtils.sendStartupMessage(this);
-
     }
 
     @Override
@@ -40,11 +35,9 @@ public final class Main extends JavaPlugin {
     }
 
     public void registerCommands() {
-        commandManager = new PaperCommandManager(this);
-        commandManager.registerCommand(new ReloadCommand(configManager));
-        commandManager.registerCommand(new ToggleCommand(configManager));
-        commandManager.getCommandCompletions().registerCompletion("toggle", 
-        c -> java.util.Arrays.asList("on", "off"));
+        getCommand("joinleave").setExecutor(new ReloadCommand(configManager));
+        getCommand("joinleave").setExecutor(new ToggleCommand(configManager));
+        getCommand("joinleave").setTabCompleter(new JoinLeaveTabCompleter());
     }
 
     public void registerEvents() {
@@ -54,5 +47,4 @@ public final class Main extends JavaPlugin {
     public ConfigManager getConfigManager() {
         return configManager;
     }
-
 }
